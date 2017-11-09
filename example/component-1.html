@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/vue.js"></script>
+    <title>component</title>
+</head>
+<body>
+<h1>component组件实例</h1>
+<hr>
+<div id="app">
+    <jsfeng></jsfeng>
+    <panda></panda>
+</div>
+
+<script type="text/javascript">
+    Vue.component('jsfeng',{
+        template:`<div style="color: red">我是全局组件jsfeng</div>`
+    });
+    var app=new Vue({
+        el:'#app',
+        components :{
+            "panda":{
+                template:`<div style="color: green">我是局部组件panda</div>`
+            }
+        }
+    });
+</script>
+</body>
+</html>
