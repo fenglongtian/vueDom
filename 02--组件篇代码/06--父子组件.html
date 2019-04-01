@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <!--使用组件,title 是父组件的作用域值，parent-title是子组件props定义接受值-->
+    <com1 v-bind:parentmsg="parentmsg"></com1>
+
+</div>
+<script>
+
+
+    var app = new Vue({
+        el:"#app",
+        data:{
+            msg:"我是父组件数据",
+            parentmsg:{
+                id:'1',
+                name:'feng'
+            }
+        },
+        components:{
+            // 在外部声明变量，使用代码简洁
+            com1: {
+                template: '<h1>这是子组件 --- {{ parentmsg }}</h1>',
+                // props: ['parentmsg'], // 把父组件传递过来的 postTitle 属性，先在 props 数组中，定义一下，这样，才能使用这个数据
+                props:{
+                    // 带有默认值的对象
+                    parentmsg: {
+                        type: Object,
+                        // 对象或数组默认值必须从一个工厂函数获取
+                        default: function () {
+                            return { message: 'hello' }
+                        }
+                    },
+
+
+                },
+                methods: {
+                }
+            }
+
+        },
+
+    })
+</script>
+
+
+</body>
+</html>

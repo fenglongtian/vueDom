@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .active{
+            width:100px;
+            height:100px;
+            background: red;
+            margin-bottom: 100px;
+        }
+        .text-danger{
+            margin-top:100px;
+            width:100px;
+            height:100px;
+            background: #64faff;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <!--<div v-bind:class="{ active: isActive }"></div>-->
+    <!--<div v-bind:class="classObject"></div>-->
+
+    <div v-bind:class="[activeClass, errorClass]"></div>
+    <div v-bind:class="[isActive ? activeClass : '', errorClass]"></div>
+</div>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+
+            // error: null,
+            // classObject: {
+            //     active: false,
+            //     'text-danger': true
+            // }
+            isActive: true,
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        },
+        computed: {
+            classObject: function () {
+                return {
+                    active: this.isActive && !this.error,
+                    'text-danger': this.error && this.error.type === 'fatal'
+                }
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+
+<!--<router-link to="/register">注册</router-link>-->
+    <router-link :to="{name:'hi1',params:{username:'feng'}}">Hi页面1</router-link>
+
+
+
+<!-- 路由出口 -->
+<!-- 路由匹配到的组件将渲染在这里 -->
+
+<router-view></router-view>
+
+</div>
+
+<script>
+
+    var Hi1 = {
+        template: '<h1>    {{$route.params.username}}</h1>'
+    }
+
+
+    var router = new VueRouter({
+        routes: [
+            {path:'/hi1',name:'hi1',component:Hi1}
+            ]
+    })
+    const app = new Vue({
+        el:"#app",
+        data:{
+
+        },
+        router
+    })
+</script>
+
+</body>
+</html>

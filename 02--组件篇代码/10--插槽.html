@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <com>
+
+        <h1 slot ="first"> 我对应first插槽</h1>
+        <h1 slot ="second"> 我对应second插槽</h1>
+        <h1 > 我对应没有name 的插槽</h1>
+
+    </com>
+
+    <!--新插槽-->
+
+    <current-user>
+        <!--{{ user.firstName }}-->
+    </current-user>
+
+
+
+</div>
+<template id="current">
+    <!--//为了让 user 在父级的插槽内容可用，我们可以将 user 作为一个 <slot> 元素的特性绑定上去：绑定在 <slot> 元素上的特性被称为插槽 prop-->
+    <span>
+  <slot v-bind:user="user">
+    {{ user.lastName }}
+  </slot>
+</span>
+</template>
+<template id="com">
+    <div>
+        {{msg}}
+        <!--<slot></slot>-->
+        <slot name="first"></slot>
+        <slot name="second"></slot>
+        <slot name="default"></slot>
+    </div>
+</template>
+
+
+<script type="text/javascript">
+    let currentUser={
+        template:"#current",
+        data(){
+            return{
+                user:{
+
+                    firstName:'我是feng',
+                    lastName:'龙'
+                }
+
+            }
+        }
+    }
+    let com = {
+        template:'#com',
+        data(){
+            return{
+                msg:"插槽"
+            }
+        }
+    };
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            user:{
+                firstName:'我是父组件feng',
+                lastName:'龙'
+            }
+        },
+        components: {
+            com,
+            currentUser
+        }
+
+    })
+</script>
+</body>
+</html>

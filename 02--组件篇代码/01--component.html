@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+<!--组件小示例-->
+<div id="app">
+    <my-btn></my-btn>
+</div>
+
+<!-- 在 被控制的 #app 外面,使用 template 元素,定义组件的HTML模板结构  -->
+<template id="tmpl">
+    <div>
+        <h1>这是通过 template 元素,在外部定义的组件结构,这个方式,有代码的只能提示和高亮</h1>
+        <h4>好用,不错!</h4>
+    </div>
+</template>
+<script>
+   /* Vue.component('my-btn',{
+        data:function () {
+            return {
+                count:0
+            }
+        },
+        template:`<button v-on:click="count++">计数：{{ count }} </button>`
+
+    })*/
+   /*var login = Vue.extend({
+       template:`<h1>我是登录</h1>`
+   });
+   Vue.component("my-btn",login);
+*/
+
+   Vue.component("my-btn",{
+       // template:`<h1>我是登录</h1>`
+       template: '#tmpl'
+   });
+
+   var app = new Vue({
+        el:"#app"
+    })
+</script>
+</body>
+</html>

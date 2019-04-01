@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--<div id="mount-point"></div>-->
+    <author></author>
+    <div id="author"></div>
+</div>
+
+<script>
+
+    //使用基础 Vue 构造器，创建一个“子类”。参数是一个包含组件选项的对象
+    // 创建构造器
+    var Profile = Vue.extend({
+        template: '<p>{{firstName}} {{lastName}} 的姓氏 {{alias}}</p>',
+        data: function () {
+            return {
+                firstName: '冯',
+                lastName: '小天',
+                alias: 'feng'
+            }
+        }
+    })
+    // 创建 Profile 实例，并挂载到一个元素上。
+    new Profile().$mount("author");
+    new Profile().$mount("#author");
+
+
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+        el: '#app',
+        data: {
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>

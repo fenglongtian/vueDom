@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body>
+
+<div id="app">
+
+    <my-post post-title="hello!"></my-post>
+    <my-post v-bind:title="post.title"></my-post>
+    <!-- 动态赋予一个复杂表达式的值 -->
+    <my-post  v-bind:title="post.title + ' -- ' + post.author"></my-post>
+
+    <!-- 即便 `42` 是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
+    <!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
+    <my-post  v-bind:likes="42"></my-post>
+
+    <!-- 用一个变量进行动态赋值。-->
+    <my-post v-bind:likes="post.likes"></my-post>
+
+    <!-- 包含该 prop 没有值的情况在内，都意味着 `true`。-->
+    <my-post is-published></my-post>
+
+    <!-- 即便 `false` 是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
+    <!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
+    <my-post v-bind:is-published="false"></my-post>
+
+    <!-- 用一个变量进行动态赋值。-->
+    <my-post v-bind:is-published="post.isPublished"></my-post>
+
+
+    <!-- 即便数组是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
+    <!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
+    <my-post v-bind:comment-ids="[234, 266, 273]"></my-post>
+
+    <!-- 用一个变量进行动态赋值。-->
+    <my-post v-bind:comment-ids="post.commentIds"></my-post>
+
+
+
+    <!-- 即便对象是静态的，我们仍然需要 `v-bind` 来告诉 Vue -->
+    <!-- 这是一个 JavaScript 表达式而不是一个字符串。-->
+    <my-post
+            v-bind:author1="{name: 'feng', company: '这是对象'}"
+    ></my-post>
+
+    <!-- 用一个变量进行动态赋值。-->
+    <my-post v-bind:author1="post.name"></my-post>
+
+
+    <my-post v-bind="post"></my-post>
+</div>
+<script>
+    Vue.component('my-post', {
+        // 在 JavaScript 中是 camelCase 的
+        props: ['postTitle'],
+        template: '<h3>{{ postTitle }}</h3>'
+    })
+
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            // title:"",
+            post:{
+                title:"我是动态数据变量传值",
+                author:'feng',
+                likes:'222',
+                isPublished:true,
+                commentIds:[1,23,44],
+                name:{name: 'feng', company: '这是对象'}
+            }
+        },
+        methods: {}
+    });
+
+</script>
+</body>
+</html>

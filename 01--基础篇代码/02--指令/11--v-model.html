@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--<span>数据:</span>-->
+    <!--<p style="white-space: pre-line;">{{ message }}</p>-->
+    <!--<br>-->
+    <!--<textarea v-model="message" placeholder=""></textarea>-->
+    <!--单个复选框-->
+    <!--<input type="checkbox" id="checkbox" v-model="checked">-->
+    <!--<label for="checkbox">{{ checked }}</label>-->
+
+    <!--多个复选框，绑定到同一个数组：-->
+    <!--<input type="checkbox" id="jack" value="Jack" v-model="checkedNames">-->
+    <!--<label for="jack">Jack</label>-->
+    <!--<input type="checkbox" id="john" value="John" v-model="checkedNames">-->
+    <!--<label for="john">John</label>-->
+    <!--<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">-->
+    <!--<label for="mike">Mike</label>-->
+    <!--<br>-->
+    <!--<span>Checked names: {{ checkedNames }}</span>-->
+
+    <!--单选按钮-->
+<!--    <input type="radio" id="one" value="1" v-model="picked">
+    <label for="one">1</label>
+    <br>
+    <input type="radio" id="two" value="2" v-model="picked">
+    <label for="two">2</label>
+    <br>
+    <span>选择结果: {{ picked }}</span>-->
+
+    <!--选择框单选-->
+<!--
+    <select v-model="selected">
+        <option disabled value="">请选择</option>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </select>
+    <span>Selected: {{ selected }}</span>-->
+
+    <!--<select v-model="selected">-->
+        <!--<option v-for="option in options" v-bind:value="option.value">-->
+            <!--{{ option.text }}-->
+        <!--</option>-->
+    <!--</select>-->
+    <!--<span>Selected: {{ selected }}</span>-->
+
+    <input v-model.lazy="msg" >
+    {{msg}}
+
+</div>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            // checked:'true',
+            // checkedNames: [],
+            // picked: '',
+            // selected: 'A',
+            // options: [
+            //     { text: '1', value: 'A' },
+            //     { text: '2', value: 'B' },
+            //     { text: '3', value: 'C' }
+            // ]
+            msg:'dddd'
+        }
+    })
+</script>
+</body>
+</html>

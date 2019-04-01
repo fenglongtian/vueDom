@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="toggle" @click="flag=!flag">
+    <my-com1 v-if="flag"></my-com1>
+    <my-com2 v-else="flag"></my-com2>
+</div>
+<script>
+
+    Vue.component('myCom1', {
+        template: '<h3>组件1</h3>'
+    })
+
+    Vue.component('myCom2', {
+        template: '<h3>组件2</h3>'
+    })
+
+    // 创建 Vue 实例，得到 ViewModel
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            flag: true
+        },
+        methods: {}
+    });
+
+</script>
+</body>
+</html>

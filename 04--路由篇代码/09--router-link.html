@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <router-link to="/sapp">sapp</router-link>
+    <router-view></router-view>
+</div>
+<template id="sapp">
+    <div>
+        <button @click="handelClick('1')"> 直接使用地址 </button>
+        <button @click="handelClick('2')"> 使用对象 </button>
+        <button @click="handelClick('4')"> 传递参数 </button>
+    </div>
+</template>
+
+<script type="text/javascript">
+    const sapp = {
+        template:'#sapp',
+        methods:{
+            handelClick(param){
+                const userId = '123'
+                if(param === "1"){
+                    this.$router.push('home');
+                }else if(param === "2"){
+                    this.$router.push({path:'home'});
+                }else{
+                    ///home?plan=private
+                    this.$router.push({ path: 'home', query: { plan: 'private' }})
+                }
+
+            },
+        }
+    };
+    const home = {
+        template:'<h1>home</h1>'
+    };
+
+    const routes=[
+        {path:"/sapp", component:sapp},
+        {path:"/home", component:home,name:'home'},
+    ];
+
+    const router = new VueRouter({
+        routes // (缩写) 相当于 routes: routes
+    });
+    var vm = new Vue({
+        el: "#app",
+        router,
+
+    })
+</script>
+</body>
+</html>

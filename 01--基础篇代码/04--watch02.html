@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch</title>
+</head>
+<body>
+<div id="app">
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var App = {
+        template: `<div>
+<input type="text" v-model="myText">
+{{myText}}
+<button @click="stus[0].name='rose';">改变stus[0].name</button>
+</div>`,
+        data: function () {
+            return {
+                myText: '111',
+                stus: [{name: 'jack'}]
+            }
+        },
+        watch: {
+//监视复杂类型，无法监测的原因，监测对象的地址，地址没改，改的是同地址属性的值
+            /* stus:function(){
+            console.log('监测成功，不可能')
+            },*/
+//深度监视
+            stus: {
+                //如果想监听对象内部内容时候需要使用deep,因为对象是一个地址，内部内容改变，但地址没变实际是监听不到的，所以需要deep
+                deep: true,
+                handler: function (newV, oldV) {
+                    console.log('监视复杂数据类型成功')
+                }
+            },
+//key 是属于data属性的属性名，value是监测后的行为
+            myText: function (newV, oldV) {
+                console.log(newV, oldV);
+                if (newV === 'love') {
+                    console.log('love')
+                }
+            }
+        }
+    }
+    new Vue({
+        el: "#app",
+        components: {
+            app: App
+        },
+        template: '<app/>'
+    })
+</script>
+</body>
+</html>

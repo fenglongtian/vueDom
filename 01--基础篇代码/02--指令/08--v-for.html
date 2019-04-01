@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--<ul>-->
+        <!--<li v-for="(item, index) of items">-->
+        <!--{{ parentMessage }} - {{ index }} - {{ item.message }}-->
+        <!--</li>-->
+        <!--<li v-for="value in object">-->
+        <!--{{ value }}-->
+        <!--</li>-->
+        <!--<div v-for="(value, key) in object">-->
+        <!--{{ key }}: {{ value }}-->
+        <!--</div>-->
+        <!--<p v-for="count in 10">这是第 {{ count }} 次循环</p>-->
+    <!--</ul>-->
+
+    <div>
+        <label>Id:
+            <input type="text" v-model="id">
+        </label>
+
+        <label>Name:
+            <input type="text" v-model="name">
+        </label>
+
+        <input type="button" value="添加" @click="add">
+    </div>
+
+    <!-- 注意： v-for 循环的时候，key 属性只能使用 number获取string -->
+    <!-- 注意： key 在使用的时候，必须使用 v-bind 属性绑定的形式，指定 key 的值 -->
+    <!-- 在组件中，使用v-for循环的时候，或者在一些特殊情况中，如果 v-for 有问题，必须 在使用 v-for 的同时，指定 唯一的 字符串/数字 类型 :key 值 -->
+    <p v-for="item in list" :key="item.id">
+        <input type="checkbox">{{item.id}} --- {{item.name}}
+    </p>
+</div>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            // parentMessage: 'Parent',
+            // object: {
+            //     firstName: 'John',
+            //     lastName: 'Doe',
+            //     age: 30
+            // }
+            // items: [
+            //     { message: '苹果' },
+            //     { message: '香蕉' },
+            //     { message: '桃子' }
+            // ]
+            id: '',
+            name: '',
+            list: [
+                { id: 1, name: '小明' },
+                { id: 2, name: '小红' },
+
+            ]
+        },
+        methods:{
+            add() { // 添加方法
+                this.list.unshift({ id: this.id, name: this.name })
+            }
+        }
+    })
+</script>
+</body>
+</html>

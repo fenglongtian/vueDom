@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Examples</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link href="" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <router-link to='/app/123'>1111</router-link>
+    <router-link to='/app/456'>2222</router-link>
+    <router-view></router-view>
+</div>
+<template id="jsfeng">
+    <div>
+        {{$route.params.id}}
+    </div>
+</template>
+<script type="text/javascript">
+    const sapp = {
+        template:'#jsfeng',
+    };
+    const routes=[
+        {
+            path:"/app/:id",
+            component:sapp,
+
+        },
+    ];
+    const router = new VueRouter({
+        routes // (缩写) 相当于 routes: routes
+    });
+    // 验证用户登录
+    router.beforeEach((to, from, next)=>{
+        console.log('beforeEach 生命周期');
+        //官方给的中文名字叫'全局前置守卫'在路由刚开始触发且还
+        // 未进入，路由对应的组件中，简单的理解最早触发，但是触发时候没有任何
+        // 组件一类的加载，正因为如此适合做登陆判断逻辑。
+
+        //next('/login') 接受的参数和router-link一致
+        next();
+    });
+
+    router.beforeResolve((to, from, next)=>{
+        console.log('beforeResolve 生命周期');
+        //在导航被确认之前，同时在路由独享守卫所有组件内守卫
+        //和异步路由组件被解析之后，解析守卫就被调用
+        next()
+    });
+
+    // 跳转之后执行 没有next
+    router.afterEach((to, from)=>{
+        console.log('afterEach 生命周期');
+        //在所有路由的生命周期结束后调用，简单的说就是整个路由周
+        //期都完事了,这个阶段可以做一场景,
+
+    });
+
+    var vms = new Vue({
+        el: "#app",
+        router,
+
+    })
+</script>
+</body>
+</html>
